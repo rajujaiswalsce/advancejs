@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name"/>
+    <button onclick="nameFun(event)">click location</button>
+    <div id="container"></div>
+    <p></p>
+</body>
+
+<script>
+
+function nameFun(event){
+    event.preventDefault();
+   
+    let name = document.querySelector("#name").value;
+    console.log(name)
+//   let name = container.name.value;
+//   let p = new container(name)
+//   console.log(name)
+    
+   localStorage.setItem("data",JSON.stringify(name));
+}
+
+let liveName = JSON.parse(localStorage.getItem("data"));
+console.log(liveName)
+
+function append(){
+   
+    let container = document.getElementById("container");
+    let x = document.createElement("div");
+
+    let p = document.createElement("p");
+    p.innerText = "amar live in delhi";
+
+
+    div.append(p)
+    document.querySelector("#container").append
+}
+
+
+</script>
+</html>

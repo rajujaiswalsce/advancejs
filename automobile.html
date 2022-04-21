@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello</h1>
+</body>
+<script>
+
+function wheelerPart(n,p,b,bk){
+    this.brand = n;
+    this.price = p;
+    this.battery = b;
+    this.brakes =bk;
+}
+
+wheelerPart.prototype.discount = function(){
+    console.log("50% discount on this car tata")
+}
+let x = new wheelerPart("tata",50000)
+let y = new wheelerPart("neno",40000)
+
+console.log(x)
+
+</script>
+</html>

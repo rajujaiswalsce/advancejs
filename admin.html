@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="storeProduct(event)" id="product">
+        <input type="text" id="name"  placeholder="product name"/><br><br>
+        <input type="text" id="category"  placeholder="enter the category"/><br><br>
+        <input type="text" id="image"  placeholder="enter image Url"/><br><br>
+        <input type="text" id="price"  placeholder="enter price"/><br><br>
+        <select id="gender">
+            <option>Gender</option>
+            <option>MALE</option>
+            <option>FEMAL</option>
+        </select><br><br>
+       
+        <input type="text" id="sold"  placeholder="enter the boolean value "/><br><br>
+        
+        <input type="submit">
+    </form>
+</body>
+
+</html>
+<script>
+
+
+
+//this, new
+
+function NikeProductCF(n, c,i,p,g,s) {
+  this.name = n;
+  this.category =c;
+  
+  this.image = i;
+  this.price = p;
+  this.gender = g ;
+  this.sold = s;
+  
+}
+
+// let p2 = new NikeProductCF("shoes", 8000);
+// let p3 = new NikeProductCF("shoes", 5000);
+// console.log("p2:", p2);
+// console.log("p3:", p3);
+
+
+
+
+
+let arr = [];
+
+    function storeProduct(event) {
+  event.preventDefault();
+
+  let form = document.getElementById("product");
+
+  let name = form.name.value;
+  
+  let category = form.category.value;
+//   console.log(category)
+  let images = form.image.value; 
+
+  let price = form.price.value;
+
+  let gender = form.gender.value;
+
+  let sold = form.sold.value; 
+//   console.log(name,category,images,price,gender,sold)
+  let p1 = new NikeProductCF(name,category,images, price, gender,sold);
+
+  arr.push(p1);
+  console.log("arr:", arr);
+}
+</script>

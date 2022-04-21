@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            margin: auto;
+            padding-top: 20px;
+        }
+        button{
+            padding: 10px;
+            background-color: teal;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+<video width="320" height="240" controls>
+    <source src="movie.mp4" type="video/mp4">
+    <source src="movie.ogg" type="video/ogg">
+    <!-- <source src="https://drive.google.com/file/d/13gTL2z5BWTsoYCa27a-IhEdTUDS5hjKJ/view?usp=sharing"> -->
+   
+  </video>
+   <!-- <video src="https://drive.google.com/file/d/13gTL2z5BWTsoYCa27a-IhEdTUDS5hjKJ/view?usp=sharing" style="width: 100; height: 200;" id="vide"></video> -->
+ <br><br>
+
+  <button onclick="scopeFunction()" id="scope">Scope</button>
+  <h1></h1>
+  <button onclick="hostinFunction()" id="hoisting">Hoisting</button>
+  <button onclick="constructFunction()" id="constructor">Constructor Functions</button>
+  <button onclick="prototypeFunction()" id="prototype">Prototype</button>
+
+</body>
+
+
+<script>
+
+    // var y = document.createElement("vide");
+    // y.video = 
+
+
+    // var usescope = JSON.parse(localStorage.getItem("usedata"))
+    function scopeFunction(){
+        var x = document.createElement("h1").innerHTML = "hello"
+        
+        console.log(x)
+    }
+</script>
+
+</html>

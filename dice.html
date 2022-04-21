@@ -5,31 +5,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiceGame</title>
-    <link rel="stylesheet" href="dice.css">
+    <!-- <link rel="stylesheet" href="dice.css"> -->
+    <style>
+        #container-top{
+    /* border: 1px solid black; */
+    height:300px;
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#container-top >div{
+    display: inline-block;
+    align-items: center;
+    margin: 10px;
+}
+.butn{
+   border: none;
+   color:white;
+   background-color: aqua;
+   width: 20%;
+   padding: 10px;
+
+}
+img{
+    width: 60px;
+    height: 60px;
+}
+    </style>
 </head>
 <body>
-        <div>
-            <p id="member-1"> Member A</p>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20200508141006/dice6.png" id="img1" />
+        <div id="container-top">
+           <h1>winner</h1>
+           <div class="member-1">
+               <p>Member A</p>
+              
+               <img src="./image/dice1.png" alt="" />
+           </div>
+           <div class="member-2">
+            <p>Member B</p>
+            <img src="./image/dice2.png" />
         </div>
-        <div>
-            <p id="member-2">Member B</p>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20200508141006/dice6.png" id="img2" />
+        <div class="member-3">
+            <p>Member C</p>
+            <img src="./image/dice3.png"/>
+        </div><br>
+        <button type="button" class="butn">ROLL THE DICE</button>
+        
         </div>
-        <div>
-            <p id="member-3">Member C</p>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20200508141006/dice6.png" id="img3"/>
-        </div>
-    </div>
-    <div id="container-bottom1">
-        <button type="button" id="roll">ROLL THE DICE</button>
-    </div>
-    <!-- <div id="container-bottom2">
-        <button type="button" id="winner">
-            winner
-        </button>
-    </div> -->
-   
+        
 </body>
-<script src="dice.js"></script>
+<script>
+    function dicegame(){
+    var member1 = Math.floor(Math.random()*6) + 1;
+    var member1imge = "image/dice" + member1 + ".png" ;
+
+    var member2 = Math.floor(Math.random()*6) + 1;
+    var member2imge = "image/dice" + member2 + ".png" ;
+
+    var member3 = Math.floor(Math.random()*6) + 1;
+    var member3imge = "image/dice" + member3 + ".png" ;
+
+    var images1 = document.querySelectorAll("img")[0];
+    images1.setAttribute("src",member1imge);
+
+    var images2 = document.querySelectorAll("img")[1];
+    images2.setAttribute("src",member2imge);
+
+    var images3 = document.querySelectorAll("img")[2];
+    images3.setAttribute("src",member3imge);
+
+
+    if(member1>member2 && member1>member3){
+        document.querySelector("h1").innerHTML="<span style='color:green;'>member-1 is winner</span>"
+    }else if(member1<member2 && member2>member3){
+        document.querySelector("h1").innerHTML="<span style='color:yellow;'>member-2 is winner</span>"
+    }else if(member3>member2 && member3>member1){
+        document.querySelector("h1").innerHTML="<span style='color:red;'>member-3 is winner</span>"
+    }else if(member3==member2 && member3==member1){
+        document.querySelector("h1").innerHTML="<span style='color:blue;'>Draw</span>"
+    }
+}
+document.querySelector("button").addEventListener("click",dicegame)
+</script>
 </html>
