@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4d64acd748.js" crossorigin="anonymous"></script>
+    <title>Ytube</title>
+    <style>
+     #container{
+         width:90%;
+         margin:auto
+     }
+     #main{
+         border-top: 1px solid rgb(204, 199, 199);
+         border-bottom: 1px solid rgb(204, 199, 199);
+         display:flex;
+         gap:10%;
+         padding: 10px;
+     }
+     #img{
+         width:80px;
+         height:40px;
+     }
+
+     .part1{
+         flex-basis:5%;
+         display:flex;
+         gap:15px;
+
+     }
+     .part2{
+         display:flex;
+         flex-basis:85%;
+         gap:0px;
+        
+         
+     }
+    .first{
+        flex-basis:90%
+    }
+
+  .first > input {
+      width: 99%;
+      height:30px
+  }
+button {
+    height:35px;
+}
+     .part3{
+         flex-basis:5%;
+         display:flex;
+         gap:25px;
+      
+         
+     }
+
+    
+     
+
+     
+    
+     #video_div {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20%;
+            gap: 5%;
+        }
+        iframe{
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <div id="main">
+       <div class="part1">
+        <div class="margin-top">☰</div>
+        <div><img src="https://live.staticflickr.com/3323/3606295240_51f643dd5d_b.jpg" id="img"></div>
+       </div>
+       <div class="part2">  
+           <div class="first"><input type="text" id="video" placeholder="search"></div>
+           <div class="second"><button onclick="searchVideo()"><i class="fas fa-search"></i></button></div>
+           
+        </div>
+       <div class="part3">
+        <div><i class="fas fa-microphone"></i></div>
+        <div><i class="fas fa-th"></i></div>
+        <div><i class="far fa-bell"></i></div>       
+        <div><i class="fas fa-user-alt"></i></div>
+       </div>
+    </div>
+    </div>
+
+    <div id="video_div"></div>
+</body>
+</html>
+
+<script>
+    let div = document.getElementById("video_div");
+
+    async function searchVideo (){
+        div.innerHTML = null;
+  try{
+      let video = document.getElementById("video").value;
+      let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${video}&type=video&key=AIzaSyCDSvqnBF_ci9VFoiDqpnuXJQlDbe5vnOQ&maxResults=20`);
+
+      let data = await res.json();
+
+
+      for({id:{videoId}} of data.items){
+                console.log(videoId);
+                let video_frame = document.createElement("iframe");
+                video_frame.src = `https://www.youtube.com/embed/${videoId}`
+                video_frame.allow = "fullscreen"
+                div.appendChild(video_frame);
+            }
+  }
+  catch(err){
+        console.log('err:', err)
+
+        }
+    }
+
+     async function popularMovie (){
+         let res = await fetch ("https://youtube.googleapis.com/youtube/v3/search?q=mostPopularinIndia&type=video&key=AIzaSyCDSvqnBF_ci9VFoiDqpnuXJQlDbe5vnOQ&maxResults=20");
+
+         let data = await res.json();
+
+    //     console.log(data);
+
+         for ({id:{videoId}} of data.items) {
+             console.log(videoId);
+
+             let video_frame = document.createElement("iframe");
+                video_frame.src = `https://www.youtube.com/embed/${videoId}`
+                video_frame.allow = "fullscreen"
+                div.appendChild(video_frame);
+         }
+
+     }
+
+     popularMovie ();
+
+</script>
