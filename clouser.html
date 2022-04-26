@@ -26,7 +26,7 @@
         Hotstar
     </h1>
 
-    <input oninput="debouncel(delay,1000)" type="text" id="query"/>
+    <input oninput="debouncel(main,1000)" type="text" id="query"/>
     <div id="movies"></div>
 </body>
 </html>
@@ -61,7 +61,7 @@ function appendMovies(data){
   
 
      // optimization 2
-    //  movies_div.innerHTML = null;
+     movies_div.innerHTML = null;
   data.forEach(function(el){
       let p = document.createElement("p")
       p.innerText = el.Title;
@@ -71,8 +71,8 @@ function appendMovies(data){
 }
 
 // we will assemble them in one function
-  function main(){
-       data = await searchMovies();
+ async function main(){
+       let data = await searchMovies();
       if(data===undefined){
         return false;
     }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello Oops</h1>
+</body>
+</html>
+<script>
+    //Problem 1:Inheritance
+
+    class cat{
+        constructor(n,p,b){
+            this.lags = n;
+           this.claws = p;
+           this.c0lor = b;
+        }
+    }
+
+    class cats extends cat{
+        constructor(n,p,b){
+            super(n,p,b)
+            this.tail =  true;
+        }
+    }
+
+    let x = new cats(4,"sharp","black")
+    console.log(x)
+
+    //Problem 2:Encapsulation 
+
+    class payment{
+        constructor(p,r){
+            this.pay = p;
+            this.rupay = r;
+        }
+        getPay(){
+  return this.pay;
+        }
+        setPay(value){
+            this.pay = value;
+        }
+    }
+    let y = new payment()
+    y.setPay(1200)
+    console.log(y.getPay())
+   
+   // Problem 3:Abstaction
+
+
+   class product{
+       constructor(b,p){
+           
+        this.brand = b;
+       this.seller = "flipkart";
+         this.price = p;
+         this.arr = []
+       }
+
+       arrayPro(arrs){
+           this.arr.push(arrs)
+       }
+   }
+   let s1 = new product("nike", 3000);
+
+   s1.arrayPro("flipkart")
+   console.log("s1:" ,s1)
+
+
+  // Problem 4:Polymorphism
+
+
+
+  class IES {
+      run(){
+          console.log("India Engineering Service")
+      }
+   
+  }
+
+  class Gate extends IES{
+      run(){
+      console.log("Graduate Aptitude Test in Engineering ");
+      }
+  }
+
+  let a = new IES()
+  let b = new Gate()
+  b.run();
+
+</script>
