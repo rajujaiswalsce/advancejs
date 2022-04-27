@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            font-family: "Roboto";
+            box-sizing: border-box;
+        }
+     
+  
+       #heading{
+           width:90%;
+           height: 100px;
+         
+           margin:auto;
+           padding: 20px;
+           display: flex;
+           gap:60%;
+       }
+       #heading > img {
+           width:15%;
+           height: 50px;
+           
+       }
+       #container {
+           width:90%;
+           margin:auto;
+           margin-top: 20px;
+       }
+        #data{
+            display: grid;
+            grid-template-columns: 22% 22% 22% 22%;
+            grid-gap: 4%;
+          
+           
+        }
+
+        #data > div{
+            border: 1px solid black;
+            align-items: center;
+            text-align: center;
+
+        }
+        #data > div > img{
+            width:100%;
+            height:200px;
+        }
+        #search {
+            margin-left:70%;
+            margin-top:2%;
+        }
+    #display-search-bar-movie{
+        margin-left: 500px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+        <div id="heading">
+       
+</div>
+    </header>
+
+
+
+
+    <div id="search">
+    <input type="text" placeholder="Enter movie name" id="movie">
+    <button onclick="showMovie()">Submit</button>
+</div>
+
+
+<div id="display-search-bar-movie"></div>
+
+
+ <!--list of all the movies-->
+ <div id="container">
+ <div id="data"></div>
+</div>
+
+
+    <script>
+
+    
+        var movie_api = ["tt0241527","tt10280276","tt2015381","tt0848228","tt2015381","tt1591095","tt0468569","tt1345836"] 
+        var new_arr = [];
+        async function getMovie (){
+            
+      for(var i = 0; i < movie_api.length; i++){
+            
+            try{
+         let response= await fetch (`http://www.omdbapi.com/?i=${movie_api[i]}&apikey=440dd902`)   
+         let  data  = await response.json();
+         new_arr.push(data)
+       //  
+ 
+        }
+        catch (err){
+            console.log(err)
+        }
+    
+}
+localStorage.setItem("myMovies", JSON.stringify(new_arr))
+
+        }
+ getMovie();  
+
+ var get_data = JSON.parse(localStorage.getItem("myMovies"));
+
+
+ get_data.forEach(function(detail){
+     let data_div = document.getElementById("data");
+
+    let div= document.createElement("div");
+
+    let image = document.createElement("img");
+
+    image.src= detail.Poster;
+
+    let name = document.createElement("p");
+
+    name.innerText = detail.Title;
+
+    let release = document.createElement("p");
+
+    release.innerText = detail.Released;
+
+    let rating = document.createElement("p");
+
+    rating.innerText = detail.imdbRating
+
+     div.append(image,name,release,rating);
+
+     data_div.append(div)
+
+ })
+
+
+
+  function showMovie(){
+  var movie_name = document.getElementById("movie").value;
+  let movie_searched_div = document.getElementById("display-search-bar-movie");
+ 
+ movie_searched_div.innerHTML = null;
+
+
+  for(var i = 0; i < get_data.length; i++){
+
+    console.log(i)
+    
+     if( movie_name == get_data[i].Title){
+
+
+    let div= document.createElement("div");
+
+    let image = document.createElement("img");
+
+    image.src= get_data[i].Poster;
+
+    let name = document.createElement("p");
+
+    name.innerText = get_data[i].Title;
+
+    let release = document.createElement("p");
+
+    release.innerText = get_data[i].Released;
+
+    let rating = document.createElement("p");
+
+    rating.innerText = get_data[i].imdbRating
+
+     div.append(image,name,release,rating);
+
+     movie_searched_div.append(div);
+     break;
+  
+     }
+     else if(i == get_data.length-1 && movie_name != ""){
+    
+        let div= document.createElement("div");
+
+let image = document.createElement("img");
+
+image.src= "https://images-na.ssl-images-amazon.com/images/I/A1ZEuKaNUGL._RI_.jpg";
+
+image.style.width="10%";
+
+
+ div.append(image);
+
+ movie_searched_div.append(div);
+
+
+     }
+    }
+
+
+}
+    </script>
+</body>
+</html>
